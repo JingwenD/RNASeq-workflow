@@ -1,12 +1,11 @@
-# RNASeq
----
-title: "RNASeq workflow"
-output: html_notebook
----
+# RNASeq workflow
 
-*fastqc* for individual reads quality control analysis and R package *fastqcr* for the overall report generated.
+
+
 
 # 1.QC with fastqc and fastqcr
+
+*fastqc* for individual reads quality control analysis and R package *fastqcr* for the overall report generated.
 
 ## 1.1 *fastqc* commands in bash file for qsubmit
 ```{bash}

@@ -171,62 +171,62 @@ featureCounts("bam_files",
 	# level of summarization
 	useMetaFeatures=TRUE,
 	# overlap between reads and features
-  allowMultiOverlap=FALSE,
-  minOverlap=1,
-  fracOverlap=0,
-  fracOverlapFeature=0,
-  largestOverlap=FALSE,
-  nonOverlap=NULL,
-  nonOverlapFeature=NULL,
+        allowMultiOverlap=FALSE,
+        minOverlap=1,
+        fracOverlap=0,
+        fracOverlapFeature=0,
+        largestOverlap=FALSE,
+        nonOverlap=NULL,
+        nonOverlapFeature=NULL,
  
 	# Read shift, extension and reduction
-  readShiftType="upstream",
-  readShiftSize=0,
-  readExtension5=0,
-  readExtension3=0,
-  read2pos=NULL,
+        readShiftType="upstream",
+        readShiftSize=0,
+        readExtension5=0,
+        readExtension3=0,
+        read2pos=NULL,
 	
 	# multi-mapping reads
-  countMultiMappingReads=FALSE,
+        countMultiMappingReads=FALSE,
   
 	# fractional counting
-  fraction=TRUE,
+        fraction=TRUE,
   
 	# long reads
-  isLongRead=FALSE,
+        isLongRead=FALSE,
  
-  # read filtering
-  minMQS=0,
-  splitOnly=FALSE,
-  nonSplitOnly=FALSE,
-  primaryOnly=FALSE,
-  ignoreDup=FALSE,
+        # read filtering
+        minMQS=0,
+        splitOnly=FALSE,
+        nonSplitOnly=FALSE,
+        primaryOnly=FALSE,
+        ignoreDup=FALSE,
   
-  # strandness
-  strandSpecific=0,
+        # strandness
+        strandSpecific=0,
   
 	# exon-exon junctions
-  juncCounts=FALSE,
-  genome=NULL,
+        juncCounts=FALSE,
+        genome=NULL,
    
 	# parameters specific to paired end reads
-  isPairedEnd=TRUE,
-  requireBothEndsMapped=TRUE,
-  checkFragLength=TRUE,
-  minFragLength=50,
-  maxFragLength=600,
-  countChimericFragments=FALSE,
-  autosort=TRUE,
+        isPairedEnd=TRUE,
+        requireBothEndsMapped=TRUE,
+        checkFragLength=TRUE,
+        minFragLength=50,
+        maxFragLength=600,
+        countChimericFragments=FALSE,
+        autosort=TRUE,
                            
 	# number of CPU threads
-  nthreads=4,
-  # read group
-  byReadGroup=FALSE,
-                           # report assignment result for each read
-                           reportReads=NULL,
-                           reportReadsPath=NULL,
-                           # miscellaneous
-                           maxMOp=10,
-                           tmpDir=".",
-                           verbose=FALSE)
+        nthreads=4,
+        # read group
+        byReadGroup=FALSE,
+        # report assignment result for each read
+        reportReads=NULL,
+        reportReadsPath=NULL,
+        # miscellaneous
+        maxMOp=10,
+        tmpDir=".",
+        verbose=FALSE)
 ```

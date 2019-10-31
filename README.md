@@ -184,13 +184,6 @@ counts <- featureCounts("bam_files",
         nonOverlap=NULL,
         nonOverlapFeature=NULL,
  
-	# Read shift, extension and reduction
-        readShiftType="upstream",
-        readShiftSize=0,
-        readExtension5=0,
-        readExtension3=0,
-        read2pos=NULL,
-	
 	# multi-mapping reads
         countMultiMappingReads=FALSE,
   

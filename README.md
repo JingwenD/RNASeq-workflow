@@ -130,6 +130,7 @@ echo "103627-001-010a"
 
 
 # 3.Counting with *HTSeq* and R package *featureCounts*
+Counting assigns mapped sequencing reads to genomic features
 ## 3.1 Counting with *HTSeq* 
 ```{bash}
 #!/bin/bash 

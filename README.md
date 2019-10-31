@@ -162,7 +162,7 @@ done
 path <- "/hpc/dla_lti/jdeng/tmp/" 
 bam_files <- dir(path) 
 
-featureCounts("bam_files",
+counts <- featureCounts("bam_files",
 
 	# annotation
 	annot.inbuilt="hg38",
@@ -234,4 +234,8 @@ featureCounts("bam_files",
         maxMOp=10,
         tmpDir=".",
         verbose=FALSE)
+write.csv(counts$counts, file = "counts.csv")
+write.csv(counts$annotation, file = "annotation.csv")
+write.csv(counts$stat, file = "stat.csv")
+
 ```

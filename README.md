@@ -159,6 +159,9 @@ done
 
 ## 3.2 Counting with R package *featureCounts*
 ```{R}
+path <- "/hpc/dla_lti/jdeng/tmp/" 
+bam_files <- dir(path) 
+
 featureCounts("bam_files",
 
 	# annotation

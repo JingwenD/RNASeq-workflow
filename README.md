@@ -147,6 +147,7 @@ module load python/2.7.10
 
 for i in *Aligned.out.bam; do
 htseq-count -s reverse -r name -i gene_id -f bam $i /hpc/dla_lti/jdeng/GenIndex/Homo_sapiens.GRCh38.94.gtf > $i.count
+htseq-count -s no -r name -i gene_id -f bam $i /hpc/dla_lti/jdeng/GenIndex/Homo_sapiens.GRCh38.94.gtf > $i.log
 
 echo $i 
 

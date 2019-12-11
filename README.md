@@ -128,6 +128,34 @@ echo "103627-001-010a"
 
 ```
 
+5th Nov. Changed the --outSAMtype as "BAM SortedByCoordinate"
+
+
+## Nov 5 2019: Processing BAM with samtools* 
+```{bash}
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -e /hpc/dla_lti/jdeng/logFolder/samtools.log
+#$ -l h_rt=24:00:00
+#$ -l h_vmem=30G
+#$ -pe threaded 6
+#$ -N samtools
+#$ -M jdeng@umcutrecht.nl
+#$ -m aes
+
+for i in *Aligned.out.bam
+do
+    samtools view -h -q 20 $i |grep -E "^@|NH:i:1$|NH:i:1[^0-9]">$i.unique.sam  #get the read with MAPQ >= 20 and unique mapping from sam file  
+    samtools sort -n $i.unique.sam -o $i.sorted.bam   # sorted the sam file and convey to bam file
+
+echo $i
+rm $i.unique.sam
+
+done
+
+```
+
 
 # 3.Counting with *HTSeq* and R package *featureCounts*
 Counting assigns mapped sequencing reads to genomic features
@@ -155,7 +183,31 @@ echo $i
 done
 
 ```
+## Nov 5 2019 Counting with *HTSeq* 
+```{bash}
+#!/bin/bash 
+#$ -S /bin/bash
+#$ -cwd
+#$ -e /hpc/dla_lti/jdeng/logFolder/htseq2.log
+#$ -l h_rt=24:10:00
+#$ -l h_vmem=10G
+#$ -pe threaded 1
+#$ -N htseq2
+#$ -M jdeng@umcutrecht.nl
+#$ -m aes
 
+module load python/2.7.10
+
+for i in 103627-001-*Aligned.out.bam.sorted.bam; do
+
+htseq-count -s reverse -r name -m intersection-nonempty -a 10 -t exon -i gene_id -f bam $i /hpc/dla_lti/jdeng/GenIndex/Homo_sapiens.GRCh38.94.gtf > $i.countN
+
+echo $i 
+
+done
+
+
+```
 
 ## 3.2 Counting with R package *featureCounts*
 ```{R}

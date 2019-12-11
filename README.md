@@ -147,7 +147,7 @@ echo "103627-001-010a"
 for i in *Aligned.out.bam
 do
     samtools view -h -q 20 $i |grep -E "^@|NH:i:1$|NH:i:1[^0-9]">$i.unique.sam  #get the read with MAPQ >= 20 and unique mapping from sam file  
-    samtools sort -n $i.unique.sam -o $i.sorted.bam   # sorted the sam file and convey to bam file
+    samtools sort -n $i.unique.sam -o $i.sorted.bam   # sorted the sam file with read name and convey to bam file
 
 echo $i
 rm $i.unique.sam

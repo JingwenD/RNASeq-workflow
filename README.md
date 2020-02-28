@@ -130,7 +130,7 @@ echo "103627-001-010a"
 ```
 5th Nov. Changed the --outSAMtype as "BAM SortedByCoordinate"
 
-## Feb 22 2020: MAPQ calling via all BAM files
+### Feb 22 2020: MAPQ calling via all BAM files
 
 ```{bash}
 #!/bin/bash
@@ -154,7 +154,7 @@ done
 
 echo $i
 ```
-# Feb 22 2020: MAPQs sum up
+### Feb 22 2020: MAPQs sum up
 
 ```{bash}
 #!/bin/bash

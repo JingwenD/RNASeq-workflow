@@ -79,6 +79,7 @@ qc_report(qc.file, result.file = "one-sample-report",
 STAR --runThreadN 8 --runMode genomeGenerate --genomeDir /hpc/dla_lti/jdeng/GenIndex --genomeFastaFiles Homo_sapiens.GRCh38.dna.primary_assembly.fa --sjdbGTFfile Homo_sapiens.GRCh38.94.gtf --sjdbOverhang 100
 
 ```
+22th Feb 2020. Changed the --sjdbGTFfile Homo_sapiens.GRCh38.99.gtf
 
 ##  2.2 Aligning
 ```{bash}
@@ -127,9 +128,49 @@ echo "103627-001-010a"
 
 
 ```
-
 5th Nov. Changed the --outSAMtype as "BAM SortedByCoordinate"
 
+## Feb 22 2020: MAPQ calling via all BAM files
+
+```{bash}
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -e /hpc/dla_lti/jdeng/logFolder/MAPQcalling.log
+#$ -l h_rt=12:00:00
+#$ -l h_vmem=1G
+#$ -pe threaded 1
+#$ -N MAPQcalling
+#$ -M jdeng@umcutrecht.nl
+#$ -m aes
+
+for i in 103627-001-{81..146}Aligned.out.bam
+
+do
+
+samtools view $i | awk '{print $5}' > $i.csv
+
+done
+
+echo $i
+```
+# Feb 22 2020: MAPQs sum up
+
+```{bash}
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -e /hpc/dla_lti/jdeng/logFolder/MAPQstat.log
+#$ -l h_rt=02:00:00
+#$ -l h_vmem=100G
+#$ -pe threaded 2
+#$ -N MAPQstat
+#$ -M jdeng@umcutrecht.nl
+#$ -m aes
+
+cat *.bam.csv | sort -T ./ | uniq -c > MAPQ.txt
+
+```
 
 ## Nov 5 2019: Processing BAM with samtools* 
 ```{bash}

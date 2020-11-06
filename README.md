@@ -249,7 +249,38 @@ done
 
 
 ```
+# Nov 1 2020: Processing BAM with *samtools* and Counting with *HTSeq*
+```{bash}
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -e /hpc/dla_lti/jdeng/logFolder/counting.log
+#$ -l h_rt=240:00:00
+#$ -l h_vmem=5G
+#$ -pe threaded 1
+#$ -N counting
+#$ -M jdeng@umcutrecht.nl
+#$ -m aes
 
+module load python/2.7.10
+
+for i in *Aligned.out.bam
+do
+samtools view -h -q 20 $i |grep -E "^@|NH:i:1$|NH:i:1[^0-9]">$i.unique.sam
+
+samtools sort -n $i.unique.sam -o $i.sorted.bam
+
+echo $i.sorted.bam
+rm $i.unique.sam
+rm $i
+
+htseq-count -s reverse -r name -m intersection-nonempty -a 10 -t exon -i gene_id -f bam $i.sorted.bam /hpc/dla_lti/jdeng/GenIndex/Homo_sapiens.GRCh38.99.gtf > $i.countR
+
+echo $i.countR
+
+done
+
+```
 ## 3.2 Counting with R package *featureCounts*
 ```{R}
 path <- "/hpc/dla_lti/jdeng/tmp/" 
